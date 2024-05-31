@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
 @RestController
 @RequestMapping("api/v1/customer")
 @RequiredArgsConstructor
@@ -17,24 +18,27 @@ public class customer {
     @GetMapping("/health")
     public String healthTest(){return "customer health test :)";}
 
-    @CrossOrigin(origins = "http://localhost:63342")
     @PostMapping
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
         logger.info("customer save method accessed");
         return customerService.saveCustomer(customerDTO);
     }
 
-    @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping
     public CustomerDTO searchCustomer(@RequestParam String customerCode){
         logger.info("customer search method accessed ");
         return customerService.getSelectedCustomer(customerCode);
     }
 
-    @CrossOrigin(origins = "http://localhost:63342")
     @PutMapping
     public int updateCustomer(@RequestBody CustomerDTO customerDTO){
         logger.info("customer update method accessed");
         return customerService.updateCustomer(customerDTO);
+    }
+
+    @DeleteMapping
+    public void deleteCustomer(@RequestParam String customerCode){
+        logger.info("customer delete method accessed "+customerCode);
+        customerService.deleteCustomer(customerCode);
     }
 }
