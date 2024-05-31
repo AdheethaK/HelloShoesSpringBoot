@@ -9,5 +9,5 @@ public interface CustomerService {
     void deleteCustomer(String customer_Id);
     CustomerDTO getSelectedCustomer(String customer_Id);
     List<CustomerDTO> getAllCustomer();
-    boolean updateCustomer(CustomerDTO customerDTO);
+    int updateCustomer(CustomerDTO customerDTO);
 }

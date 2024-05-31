@@ -40,7 +40,25 @@ public class CustomerServiceIMPL implements CustomerService {
     }
 
     @Override
-    public boolean updateCustomer(CustomerDTO customerDTO) {
-        return false;
+    public int updateCustomer(CustomerDTO customerDTO) {
+        String customerFullCode = customerRepo.getCustomerFullCodeBy(customerDTO.getCustomer_code());
+        return customerRepo.update(
+                customerFullCode,
+                customerDTO.getCustomer_name(),
+                customerDTO.getCustomer_gender(),
+                customerDTO.getCustomer_joined_date(),
+                customerDTO.getCustomer_level(),
+                customerDTO.getCustomer_total_points(),
+                customerDTO.getCustomer_dob(),
+                customerDTO.getCustomer_address_building_no_or_name(),
+                customerDTO.getCustomer_address_lane(),
+                customerDTO.getCustomer_address_main_city(),
+                customerDTO.getCustomer_address_main_state(),
+                customerDTO.getCustomer_address_postal_code(),
+                customerDTO.getCustomer_contact_no(),
+                customerDTO.getCustomer_email(),
+                customerDTO.getCustomer_recent_purchase()
+        );
     }
+
 }

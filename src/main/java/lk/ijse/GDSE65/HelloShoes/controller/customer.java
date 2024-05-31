@@ -30,4 +30,11 @@ public class customer {
         logger.info("customer search method accessed ");
         return customerService.getSelectedCustomer(customerCode);
     }
+
+    @CrossOrigin(origins = "http://localhost:63342")
+    @PutMapping
+    public int updateCustomer(@RequestBody CustomerDTO customerDTO){
+        logger.info("customer update method accessed");
+        return customerService.updateCustomer(customerDTO);
+    }
 }
